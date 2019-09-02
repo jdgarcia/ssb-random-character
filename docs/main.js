@@ -310,15 +310,45 @@
     },
   ];
 
-  chars.forEach(char => {
+  const chances = new Array(chars.length).fill(50);
+
+  const randomBtn = document.getElementById('random-btn');
+  const randomResult = document.getElementById('random-result');
+  const charsContainer = document.getElementById('chars-container');
+
+  randomBtn.addEventListener('click', () => {
+    const maxChanceNum = chances.reduce((prev, curr) => prev + curr, 0);
+    if (maxChanceNum === 0) {
+      return;
+    }
+
+    const winningNumber = Math.floor(Math.random() * maxChanceNum);
+    let currentNum = 0;
+    const winner = chars.find((char, i) => {
+      if (currentNum <= winningNumber && winningNumber < currentNum + chances[i]) {
+        return char;
+      }
+
+      currentNum += chances[i];
+    });
+
+    if (winner) {
+      randomResult.innerHTML = `<img src="${winner.stockIcon}" />`;
+    }
+  });
+
+  chars.forEach((char, i) => {
     const el = document.createElement('div');
     el.innerHTML = `
       <div class="flex">
         <div><img src="${char.stockIcon}" /></div>
-        <div class="flex-1"><input class="width-100" type="range" min="0" max="100" /></div>
+        <div class="flex-1"><input class="width-100" type="range" min="0" max="100" value="${chances[i]}" /></div>
       </div>
     `;
 
-    document.body.append(el);
+    const input = el.getElementsByTagName('input')[0];
+    input.addEventListener('change', e => chances[i] = parseInt(e.target.value));
+
+    charsContainer.append(el);
   });
 })();

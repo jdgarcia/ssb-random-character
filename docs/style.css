@@ -6,6 +6,19 @@
   flex: 1;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
 .width-100 {
   width: 100%;
+}
+
+#random-btn {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  font-size: 100px;
+  font-weight: bold;
+  background-color: #61c2f1;
 }
