@@ -1,5 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #2d2d2d;
+}
+
 .flex {
   display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
 }
 
 .flex-1 {
@@ -18,13 +32,18 @@
   width: 100%;
 }
 
+#content {
+  height: 100vh;
+  overflow: hidden;
+}
+
 #random-btn {
   width: 120px;
   height: 120px;
   border-radius: 50%;
   font-size: 60px;
   font-weight: bold;
-  background-color: #61c2f1;
+  background-color: #00ffaa;
   border: none;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -35,11 +54,17 @@
 }
 
 #random-result {
-  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #505050;
+}
+
+#chars-container {
+  overflow: auto;
 }
 
 .char-row {
   height: 80px;
+  padding: 10px;
 }
 
 .stock-icon-container {
@@ -47,5 +72,5 @@
 }
 
 .input-container {
-  margin-right: 25%;
+  margin-right: 20%;
 }
