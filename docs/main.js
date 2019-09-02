@@ -310,7 +310,8 @@
     },
   ];
 
-  const chances = new Array(chars.length).fill(50);
+  const savedDataStr = localStorage.getItem('chances-v1');
+  const chances = savedDataStr ? JSON.parse(savedDataStr) : new Array(chars.length).fill(100);
 
   const randomBtn = document.getElementById('random-btn');
   const randomResult = document.getElementById('random-result');
@@ -346,7 +347,10 @@
     `;
 
     const input = el.getElementsByTagName('input')[0];
-    input.addEventListener('change', e => chances[i] = parseInt(e.target.value));
+    input.addEventListener('change', e => {
+      chances[i] = parseInt(e.target.value);
+      localStorage.setItem('chances-v1', JSON.stringify(chances));
+    });
 
     charsContainer.append(el);
   });
