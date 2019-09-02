@@ -339,11 +339,10 @@
 
   chars.forEach((char, i) => {
     const el = document.createElement('div');
+    el.classList.add('flex', 'align-center', 'char-row');
     el.innerHTML = `
-      <div class="flex">
-        <div><img src="${char.stockIcon}" /></div>
-        <div class="flex-1"><input class="width-100" type="range" min="0" max="100" value="${chances[i]}" /></div>
-      </div>
+      <div class="stock-icon-container"><img src="${char.stockIcon}" /></div>
+      <div class="flex-1 input-container"><input class="width-100" type="range" min="0" max="100" value="${chances[i]}" /></div>
     `;
 
     const input = el.getElementsByTagName('input')[0];
